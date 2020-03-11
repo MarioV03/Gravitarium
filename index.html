@@ -9,30 +9,101 @@
     </style>
 </head>
 <body>
-    <canvas id="scene" width="1000px" height="625px"></canvas>
+    <canvas id="scene" width="2000" height="1200"></canvas>
 
     <script>
-        let canvas = document.getElementById("scene");
-        let context = canvas.getContext("2d");
+        const canvas = document.getElementById("scene");
+        const context = canvas.getContext("2d");
 
-        let x1 = 500;
-        let y1 = 500;
-        let velo_X1 = 10;
-        let velo_Y1 = 10;
-        let acc_X1 = 10;
-        let acc_Y1 = 10;
+        function Planet(mass, color, x, y, dx, dy, ax, ay)
+        {
+            this.mass = mass;
+            this.color = color;
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.dy = dy;
+            this.ax = ax;
+            this.ay = ay;
+        }
+            
+        //Planet Earth
+        let earth = new Planet(40000, "#33a", 800, 600, 1, -10, 0, 0);
 
-        let x2 = 500;
-        let y2 = 500;
-        let velo_X1 = 10;
-        let velo_Y1 = 10;
-        let acc_X1 = 10;
-        let acc_Y1 = 10;
+        //Planet Mars
+        let mars = new Planet(50000, "#a33", 1000, 600, 2, 10, 0, 0);
 
+        let mercury = new Planet(30000, "#a93", 1000, 600, 2, -2, 0, 0);
+
+
+        
+        function drawPlanet(planet)
+        {
+            planet.dx += planet.ax;
+            planet.dy += planet.ay;
+            planet.x += planet.dx;
+            planet.y += planet.dy;
+
+            context.beginPath();
+            context.arc(planet.x, planet.y, 15, 0, 6.29);
+            context.fillStyle = planet.color;
+            context.fill();
+            context.closePath();
+        } 
+
+        function drawEarth(planet)
+        {
+            planet.dx += planet.ax;
+            planet.dy += planet.ay;
+            planet.x += planet.dx;
+            planet.y += planet.dy;
+
+            context.beginPath();
+            context.arc(planet.x, planet.y, 15, 0, 6.29);
+            context.fillStyle = planet.color;
+            context.fill();
+            context.closePath();
+        }
+
+        function drawMars(planet)
+        {
+            planet.dx += planet.ax;
+            planet.dy += planet.ay;
+            planet.x += planet.dx;
+            planet.y += planet.dy;
+
+            context.beginPath();
+            context.arc(planet.x, planet.y, 15, 0, 6.29);
+            context.fillStyle = planet.color;
+            context.fill();
+            context.closePath();
+        }
+
+
+        //main loop
         function update()
         {
+            sqDistance = (earth.x - mars.x)*(earth.x - mars.x) + (earth.y - mars.y)*(earth.y - mars.y);
+
+            earth.ax = mars.mass/sqDistance*(mars.x - earth.x)/Math.sqrt(sqDistance);
+            earth.ay = mars.mass/sqDistance*(mars.y - earth.y)/Math.sqrt(sqDistance);
+            earth.ax += mercury.mass/sqDistance*(mercury.x - earth.x)/Math.sqrt(sqDistance);
+            earth.ay += mercury.mass/sqDistance*(mercury.y - earth.y)/Math.sqrt(sqDistance);
+
+            mars.ax = -earth.mass/sqDistance*(mars.x - earth.x)/Math.sqrt(sqDistance);
+            mars.ay = -earth.mass/sqDistance*(mars.y - earth.y)/Math.sqrt(sqDistance);
+            mars.ax += mercury.mass/sqDistance*(mercury.x - mars.x)/Math.sqrt(sqDistance);
+            mars.ay += mercury.mass/sqDistance*(mercury.y - mars.y)/Math.sqrt(sqDistance);
+
+            console.log(earth.ay, earth.x, earth.y);
+
             context.clearRect(0, 0, canvas.width, canvas.height);
+            drawPlanet(mars);
+            drawPlanet(earth);
+            drawPlanet(mercury);
         }
+
+        setInterval(update, 40);
     </script>
 
 </body>
