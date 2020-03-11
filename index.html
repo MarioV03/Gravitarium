@@ -1,0 +1,38 @@
+<DOCTYPE HTML5>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Gravitarium (Beta 0.1)</title>
+    <style>
+        * { background-color: #223;}
+        canvas { background: #000; display: block; margin: 10 auto; }
+    </style>
+</head>
+<body>
+    <canvas id="scene" width="1000px" height="625px"></canvas>
+
+    <script>
+        let canvas = document.getElementById("scene");
+        let context = canvas.getContext("2d");
+
+        let x1 = 500;
+        let y1 = 500;
+        let velo_X1 = 10;
+        let velo_Y1 = 10;
+        let acc_X1 = 10;
+        let acc_Y1 = 10;
+
+        let x2 = 500;
+        let y2 = 500;
+        let velo_X1 = 10;
+        let velo_Y1 = 10;
+        let acc_X1 = 10;
+        let acc_Y1 = 10;
+
+        function update()
+        {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
+
+</body>
