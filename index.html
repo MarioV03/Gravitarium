@@ -28,12 +28,12 @@
         }
             
         //Planet Earth
-        let earth = new Planet(40000, "#33a", 800, 600, 1, -10, 0, 0);
+        let earth = new Planet(40000, "#33a", 400, 200, 1, -10, 0, 0);
 
         //Planet Mars
-        let mars = new Planet(50000, "#a33", 1000, 600, 2, 10, 0, 0);
+        let mars = new Planet(50000, "#a33", 600, 200, 2, 10, 0, 0);
 
-        let mercury = new Planet(30000, "#a93", 1000, 600, 2, -2, 0, 0);
+        let mercury = new Planet(3000, "#a93", 600, 200, 2, -2, 0, -12);
 
 
         
@@ -94,6 +94,11 @@
             mars.ay = -earth.mass/sqDistance*(mars.y - earth.y)/Math.sqrt(sqDistance);
             mars.ax += mercury.mass/sqDistance*(mercury.x - mars.x)/Math.sqrt(sqDistance);
             mars.ay += mercury.mass/sqDistance*(mercury.y - mars.y)/Math.sqrt(sqDistance);
+
+            mercury.ax = -earth.mass/sqDistance*(mercury.x - earth.x)/Math.sqrt(sqDistance);
+            mercury.ay = -earth.mass/sqDistance*(mercury.y - earth.y)/Math.sqrt(sqDistance);
+            mercury.ax += mars.mass/sqDistance*(mars.x - mercury.x)/Math.sqrt(sqDistance);
+            mercury.ay += mars.mass/sqDistance*(mars.y - mercury.y)/Math.sqrt(sqDistance);
 
             console.log(earth.ay, earth.x, earth.y);
 
