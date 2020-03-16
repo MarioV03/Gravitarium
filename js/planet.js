@@ -26,6 +26,18 @@ var planet = {
         obj.ax = ax;
         obj.ay = ay;
         return obj;
+    },
+
+    initFromPanel: function(panelInput) {
+        let obj = Object.create(planet);
+        obj.mass = Number(panelInput.mass.value);
+        obj.color = panelInput.color.value;
+        obj.radius = Math.pow(obj.mass, 0.3);
+        obj.x = Number(panelInput.x.value);
+        obj.y = Number(panelInput.y.value);
+        obj.dx = Number(panelInput.dx.value);
+        obj.dy = Number(panelInput.dy.value);
+        return obj;
     }
 };
 

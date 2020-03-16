@@ -1,0 +1,78 @@
+* { background-color: #223;}
+
+        canvas { 
+            background: #000; display: inline-block; margin: 0; 
+        }
+
+        div#panel {
+            display: inline-block;
+            width: 450;
+            -webkit-text-fill-color: azure;
+            margin: 5 10 0 0; 
+            vertical-align: top;
+        }
+
+        div#panel *
+        {
+            margin: 1pt;
+            font-family: monospace;
+        }
+
+        div.planet_panel
+        {
+            width: 47%;
+            border: 1.3pt azure solid;
+            border-radius: 5pt;
+            background-color: #222277;
+            font-family: monospace;
+            padding: 2pt;
+            display: inline-block;
+        }
+
+        div#screen {
+            display: inline-block;
+            border: 2pt azure solid;
+            border-radius: 5pt;
+            padding: 0;
+            margin: 30, 0, 20, 0;
+            overflow: hidden;
+        }
+
+        p {
+            display: inline-block;
+            width: 45%;
+            background-color:inherit;
+            font-size: large;
+            font-weight: 500;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1
+        {
+            display: block;
+            background-color: inherit;
+        }
+
+        [type=number]
+        {
+            width: 65%;
+            margin: 0;
+            padding: 0 0 0 2pt;
+        }
+
+        [type=color]
+        {
+            width: 20pt;
+            height: 20pt;
+            border-radius: 10pt;
+            border-width: 2pt;
+            border-color: azure;
+            margin: 0;
+            padding: 0;
+        }
+
+        ::placeholder
+        {
+            opacity: 50%;
+        }
