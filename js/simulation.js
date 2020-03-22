@@ -1,61 +1,32 @@
 
-function createPlanetPanel(masterPanel, index)
-{
-    let planetPanel = document.createElement("div");
-    planetPanel.setAttribute("class", "planet_panel");
-    masterPanel.appendChild(planetPanel);
+let simulation = {
+    planetInputs: [
+        planet.init(30000, "green",   1000, 400, 5, 0, 0, 0),
+        planet.init(40000, "red",     1000, 1000, -3.75, 0, 0, 0)
+    ],
+    scale: 2,
+    rate: 30,
 
-    let heading = document.createElement("h1");
-    heading.innerHTML = "Planet " + index + " ";
-    planetPanel.appendChild(heading);
-
-    let colorInput = document.createElement("input");
-    colorInput.setAttribute("type", "color");
-    colorInput.setAttribute("value", "#ffff00");
-    heading.appendChild(colorInput);
-
-    let p_mass = document.createElement("p");
-    p_mass.setAttribute("style", "width: 90%;");
-    p_mass.innerHTML = "Mass ";
-    planetPanel.appendChild(p_mass);
-    let massInput = document.createElement("input");
-    massInput.setAttribute("type", "number");
-    massInput.setAttribute("step", "100");
-    massInput.value = 30000;
-    p_mass.appendChild(massInput);
-
-    let xInput = createInputField("x ", planetPanel);
-    let dxInput = createInputField("dx ", planetPanel);
-    let yInput = createInputField("y ", planetPanel);
-    let dyInput = createInputField("dy ", planetPanel);
-
-    let planetInput =
+    getInputs: function(pan, scale, rate) 
     {
-        color: colorInput,
-        mass: massInput,
-        x: xInput,
-        y: yInput,
-        dx: dxInput,
-        dy: dyInput
+        this.planetInputs = planetsFromPanel(pan);
+        this.scale = scale;
+        this.rate = rate;
+    },
+
+    json: function()
+    {
+        return JSON.stringify(this, undefined, 2);
+    },
+
+    getPlanets: function()
+    {
+        let p = this.planetInputs;
+        return p;
+    },
+
+    clone: function()
+    {
+        return JSON.parse(this.json());
     }
-
-    return planetInput;
-
-}
-
-function load(file) {
-    let config = JSON.parse(file);
-}
-
-function createInputField(name, planetPanel)
-{
-    let p = document.createElement("p");
-    p.innerHTML = name;
-    planetPanel.appendChild(p);
-    let input = document.createElement("input");
-    input.setAttribute("type", "number");
-    input.setAttribute("step", "10");
-    p.appendChild(input);
-
-    return input;
 }
