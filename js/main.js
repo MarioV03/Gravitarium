@@ -78,9 +78,9 @@ scaleInput.oninput = function()
 numOfPlanets.oninput = function()
 {
     if(numOfPlanets.value == 0) return;
-    if(numOfPlanets.value > 3 || numOfPlanets.value < 1)
+    if(numOfPlanets.value > 10 || numOfPlanets.value < 1)
     {
-        alert("Invalid number of planets, please choose within a range of [1-3]");
+        alert("Invalid number of planets, please choose within a range of [1-10]");
         return;
     }
     planetPanels = addPanels(numOfPlanets.value);
@@ -140,6 +140,7 @@ load_button.onclick = function()
         sim = JSON.parse(document.getElementById("file").value);
     }
     planetPanels = recreatePanel(sim);
+    numOfPlanets.disabled = true;
 }
 
 initSimulation();
