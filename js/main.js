@@ -16,14 +16,18 @@ let save_button = document.getElementById("save_button");
 //main loop timer
 let interval;
 let running = false;
+let showVectors = false;
+let dt = 1000;
 
 //main loop events
 function update()
 {
-    applyForces(planets);
-    movePlanets(planets);
-    drawPlanets(planets, sim.scale);
-    drawAcceleration(planets, sim.scale);
+    for (let i = 0; i < dt; i++) {
+        applyForces(planets);
+        movePlanets(planets);
+        drawPlanets(planets, sim.scale);
+        if(showVectors) drawAcceleration(planets, sim.scale);
+    }
 }
 
 function run()
