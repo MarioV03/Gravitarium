@@ -17,7 +17,7 @@ let save_button = document.getElementById("save_button");
 let interval;
 let running = false;
 let showVectors = false;
-let dt = 1000;
+let dt = 2000;
 
 //main loop events
 function update()
@@ -27,6 +27,7 @@ function update()
         movePlanets(planets);
         drawPlanets(planets, sim.scale);
         if(showVectors) drawAcceleration(planets, sim.scale);
+        drawTrajectory(planets, sim.scale);
     }
 }
 
@@ -97,6 +98,7 @@ run_button.onclick = function()
         if(!planets) return;
         run_button.innerHTML = "Stop";
         run_button.setAttribute("style", "background: #900");
+        clearTrajectory();
         run();
     }
     else
