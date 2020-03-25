@@ -3,7 +3,7 @@ const canvas2 = document.getElementById("overlay");
 const context = canvas.getContext("2d");
 const context2 = canvas2.getContext("2d");
 
-context2.globalAlpha = 0.02;
+context2.globalAlpha = 0.01;
 
 //Planets data
 var planet = {
@@ -79,7 +79,6 @@ function drawAcceleration(planets, scale) {
 function drawTrajectory(planets, scale) {
   for (i = 0; i < planets.length; i++) {
     context2.fillStyle = planets[i].color;
-    context2.globalAlpha = 0.02;
     context2.fillRect(Math.floor(planets[i].x / scale), Math.floor(planets[i].y / scale), 1, 1);
   }
 }
